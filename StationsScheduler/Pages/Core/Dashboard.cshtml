@@ -28,7 +28,7 @@
 		<div id="leftDiv">
 			<h1>Products</h1>
 			<p>
-				<a asp-page="Products/Create">Create New</a>
+				<a asp-page="./Products/Create">Create New</a>
 			</p>
 			<table class="table">
 				<thead>
@@ -52,9 +52,9 @@
 								@Html.DisplayFor(modelItem => item.time)
 							</td>
 							<td>
-								<a asp-page="Products/Edit" asp-route-id="@item.ProductID">Edit</a> |
-								<a asp-page="Products/Details" asp-route-id="@item.ProductID">Details</a> |
-								<a asp-page="Products/Delete" asp-route-id="@item.ProductID">Delete</a>
+								<a asp-page="./Products/Edit" asp-route-id="@item.ProductID">Edit</a> |
+								<a asp-page="./Products/Details" asp-route-id="@item.ProductID">Details</a> |
+								<a asp-page="./Products/Delete" asp-route-id="@item.ProductID">Delete</a>
 							</td>
 						</tr>
 					}
@@ -64,7 +64,7 @@
 		<div id="rightDiv">
 			<h1>Stations</h1>
 			<p>
-				<a asp-page="Stations/Create">Create New</a>
+				<a asp-page="./Stations/Create">Create New</a>
 			</p>
 			<table class="table">
 				<thead>
@@ -88,9 +88,9 @@
 								@Html.DisplayFor(modelItem => item.Capacity)
 							</td>
 							<td>
-								<a asp-page="Stations/Edit" asp-route-id="@item.StationID">Edit</a> |
-								<a asp-page="Stations/Details" asp-route-id="@item.StationID">Details</a> |
-								<a asp-page="Stations/Delete" asp-route-id="@item.StationID">Delete</a>
+								<a asp-page="./Stations/Edit" asp-route-id="@item.StationID">Edit</a> |
+								<a asp-page="./Stations/Details" asp-route-id="@item.StationID">Details</a> |
+								<a asp-page="./Stations/Delete" asp-route-id="@item.StationID">Delete</a>
 							</td>
 						</tr>
 					}
