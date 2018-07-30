@@ -11,9 +11,10 @@ using System;
 namespace StationsScheduler.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180730092829_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,8 +189,6 @@ namespace StationsScheduler.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<double>("time");
-
                     b.HasKey("ProductID");
 
                     b.HasIndex("ApplicationUserId");
@@ -203,8 +202,6 @@ namespace StationsScheduler.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ApplicationUserId");
-
-                    b.Property<double>("Capacity");
 
                     b.Property<string>("Name");
 

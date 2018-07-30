@@ -1,0 +1,25 @@
+﻿@page
+@model StationsScheduler.Pages.Account.DetailsModel
+
+<div>
+    <h4>Station</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Station.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Station.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Station.Capacity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Station.Capacity)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Station.StationID">Edit</a> |
+    <a asp-page="../Dashboard">Back to List</a>
+</div>

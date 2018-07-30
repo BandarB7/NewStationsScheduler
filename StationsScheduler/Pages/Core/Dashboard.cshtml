@@ -1,0 +1,102 @@
+﻿@page
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model StationsScheduler.Pages.Core.DashboardModel
+
+@{
+	ViewData["Title"] = "Dashboard";
+	//Layout = "_DLayout";
+}
+
+<style>
+	#leftDiv {
+		float: left;
+		width : 50%;
+	}
+
+	#rightDiv {
+		float: right;
+		width: 50%;
+	}
+</style>
+
+<h2>Dashboard</h2>
+
+<div>
+	<h1>Welcome to dashboard</h1>
+	@if (SignInManager.IsSignedIn(User)) {
+		<div id="leftDiv">
+			<h1>Products</h1>
+			<p>
+				<a asp-page="Products/Create">Create New</a>
+			</p>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							@Html.DisplayNameFor(model => model.Product[0].Name)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Product[0].time)
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.Product) {
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.time)
+							</td>
+							<td>
+								<a asp-page="Products/Edit" asp-route-id="@item.ProductID">Edit</a> |
+								<a asp-page="Products/Details" asp-route-id="@item.ProductID">Details</a> |
+								<a asp-page="Products/Delete" asp-route-id="@item.ProductID">Delete</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div id="rightDiv">
+			<h1>Stations</h1>
+			<p>
+				<a asp-page="Stations/Create">Create New</a>
+			</p>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							@Html.DisplayNameFor(model => model.Station[0].Name)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Station[0].Capacity)
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.Station) {
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Capacity)
+							</td>
+							<td>
+								<a asp-page="Stations/Edit" asp-route-id="@item.StationID">Edit</a> |
+								<a asp-page="Stations/Details" asp-route-id="@item.StationID">Details</a> |
+								<a asp-page="Stations/Delete" asp-route-id="@item.StationID">Delete</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		}
+	</div>
+<br />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using StationsScheduler.Data;
 
 namespace StationsScheduler.Data
 {
@@ -21,5 +22,12 @@ namespace StationsScheduler.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
-    }
+
+        public DbSet<StationsScheduler.Data.Product> Product { get; set; }
+
+        public DbSet<StationsScheduler.Data.Station> Station { get; set; }
+
+
+
+	}
 }
