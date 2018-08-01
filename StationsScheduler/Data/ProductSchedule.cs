@@ -15,13 +15,20 @@ namespace StationsScheduler.Data
 		public ApplicationUser Owner {
 			set;get;
 		}
+		/*
 		public Product Product {
 			set;get;
 		}
 		public Station Station {
 			set;get;
 		}
-
+		*/
+		public int ProductID {
+			set;get;
+		}
+		public int StationID {
+			set;get;
+		}
 		public int Time {
 			set;get;
 		}

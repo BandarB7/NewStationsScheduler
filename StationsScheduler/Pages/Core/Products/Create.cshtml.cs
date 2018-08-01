@@ -39,7 +39,6 @@ namespace StationsScheduler.Pages.Core.Products
             {
                 return Page();
             }
-
 			_context.Product.Add(Product);
 			await _context.SaveChangesAsync();
 			return RedirectToPage("../Dashboard");

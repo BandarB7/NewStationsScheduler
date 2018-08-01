@@ -14,23 +14,26 @@ namespace StationsScheduler.Pages.Core.ProblemSolver
 {
 	public class CreateModel : PageModel {
 		private readonly StationsScheduler.Data.ApplicationDbContext _context;
-		private ProblemsController problemsController;
-		private ProductsController productsController;
-		private SchedulesController schedulesController;
-		private StationsController stationsController;
+		ProductsController productsController;
 
 		public CreateModel(StationsScheduler.Data.ApplicationDbContext context) {
 			_context = context;
 			Products = new List<Product>();
 			Stations = new List<Station>();
-			schedulesController = new SchedulesController(context);
+			productsController = new ProductsController(context);
 		}
-
+	
 		public async Task<IActionResult> OnGetAsync() {
+			Product product;
 			Schedules = await _context.ProductSchedule.ToListAsync();
 			foreach (var entry in Schedules) {
-				Console.Write("hello");
+				var productID = entry.ProductID;
+				var stationID = entry.StationID;
+				var time = entry.Time;
+				product = await _context.Product.SingleOrDefaultAsync(m => m.ProductID == productID);
+				
 			}
+
 			return Page();
 		}
 

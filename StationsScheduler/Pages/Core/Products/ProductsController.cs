@@ -119,12 +119,10 @@ namespace StationsScheduler.Pages.Core
             return Ok(product);
         }
 
-        private bool ProductExists(int id)
+        public bool ProductExists(int id)
         {
             return _context.Product.Any(e => e.ProductID == id);
         }
-		public async Task<Product> getMyProductAsync(int id) {
-			return await _context.Product.SingleOrDefaultAsync(m => m.ProductID == id);
-		}
+
 	}
 }
