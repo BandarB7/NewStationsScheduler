@@ -1,6 +1,7 @@
 ﻿@page
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject ApplicationDbContext DbContext
 @model StationsScheduler.Pages.Core.DashboardModel
 
 @{
@@ -23,7 +24,6 @@
 <h2>Dashboard</h2>
 
 <div>
-	<h1>Welcome to dashboard</h1>
 	@if (SignInManager.IsSignedIn(User)) {
 		<div id="leftDiv">
 			<h1>Products</h1>
@@ -36,8 +36,9 @@
 						<th>
 							@Html.DisplayNameFor(model => model.Product[0].Name)
 						</th>
+
 						<th>
-							@Html.DisplayNameFor(model => model.Product[0].time)
+							@Html.DisplayNameFor(model => model.Product[0].ProductID)
 						</th>
 						<th></th>
 					</tr>
@@ -49,12 +50,13 @@
 								@Html.DisplayFor(modelItem => item.Name)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.time)
+								@Html.DisplayFor(modelItem => item.ProductID)
 							</td>
 							<td>
 								<a asp-page="./Products/Edit" asp-route-id="@item.ProductID">Edit</a> |
 								<a asp-page="./Products/Details" asp-route-id="@item.ProductID">Details</a> |
 								<a asp-page="./Products/Delete" asp-route-id="@item.ProductID">Delete</a>
+
 							</td>
 						</tr>
 					}
@@ -75,6 +77,9 @@
 						<th>
 							@Html.DisplayNameFor(model => model.Station[0].Capacity)
 						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Station[0].StationID)
+						</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -88,6 +93,9 @@
 								@Html.DisplayFor(modelItem => item.Capacity)
 							</td>
 							<td>
+								@Html.DisplayFor(modelItem => item.StationID)
+							</td>
+							<td>
 								<a asp-page="./Stations/Edit" asp-route-id="@item.StationID">Edit</a> |
 								<a asp-page="./Stations/Details" asp-route-id="@item.StationID">Details</a> |
 								<a asp-page="./Stations/Delete" asp-route-id="@item.StationID">Delete</a>
@@ -97,6 +105,53 @@
 				</tbody>
 			</table>
 		</div>
-		}
-	</div>
+		<div class="middle">
+			<h1>Schedule</h1>
+			<p>
+				<a asp-page="Schedule/CreateSchedule">Create New</a>
+			</p>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							@Html.DisplayNameFor(model => model.ProductSchedule[0].Product)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.ProductSchedule[0].Station)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.ProductSchedule[0].Time)
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.ProductSchedule) {
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Product.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Station.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Time)
+							</td>
+							<td>
+								<a asp-page="Schedule/Edit" asp-route-id="@item.ProductScheduleID">Edit</a> |
+								<a asp-page="Schedule/Details" asp-route-id="@item.ProductScheduleID">Details</a> |
+								<a asp-page="Schedule/Delete" asp-route-id="@item.ProductScheduleID">Delete</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+			
+		</div>
+	}
+	else {
+		<h1>Please Sign In</h1>
+	}
+
+</div>
 <br />

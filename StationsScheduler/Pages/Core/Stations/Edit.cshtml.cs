@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StationsScheduler.Data;
 
-namespace StationsScheduler.Pages.Account
+namespace StationsScheduler.Pages.Core.Stations
 {
     public class EditModel : PageModel
     {

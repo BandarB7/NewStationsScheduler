@@ -9,5 +9,13 @@
 		public double Capacity {
 			get;set;
 		}
+
+		public ApplicationUser Owner {
+			set; get;
+		}
+
+		public string toString() {
+			return Name;
+		}
 	}
 }

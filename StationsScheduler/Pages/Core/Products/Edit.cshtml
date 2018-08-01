@@ -14,11 +14,6 @@
                 <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Product.time" class="control-label"></label>
-                <input asp-for="Product.time" class="form-control" />
-                <span asp-validation-for="Product.time" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
@@ -26,7 +21,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="../Dashboard">Back to List</a>
 </div>
 
 @section Scripts {

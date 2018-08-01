@@ -179,22 +179,58 @@ namespace StationsScheduler.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("StationsScheduler.Data.Problem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Problem");
+                });
+
             modelBuilder.Entity("StationsScheduler.Data.Product", b =>
                 {
                     b.Property<int>("ProductID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("Name");
 
-                    b.Property<double>("time");
+                    b.Property<string>("OwnerId");
+
+                    b.Property<int?>("ProblemId");
 
                     b.HasKey("ProductID");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("ProblemId");
 
                     b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("StationsScheduler.Data.ProductSchedule", b =>
+                {
+                    b.Property<int>("ProductScheduleID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("OwnerId");
+
+                    b.Property<int?>("ProductID");
+
+                    b.Property<int?>("StationID");
+
+                    b.Property<int>("Time");
+
+                    b.HasKey("ProductScheduleID");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("StationID");
+
+                    b.ToTable("ProductSchedule");
                 });
 
             modelBuilder.Entity("StationsScheduler.Data.Station", b =>
@@ -202,19 +238,19 @@ namespace StationsScheduler.Data.Migrations
                     b.Property<int>("StationID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<double>("Capacity");
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ProductID");
+                    b.Property<string>("OwnerId");
+
+                    b.Property<int?>("ProblemId");
 
                     b.HasKey("StationID");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("OwnerId");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProblemId");
 
                     b.ToTable("Station");
                 });
@@ -266,20 +302,39 @@ namespace StationsScheduler.Data.Migrations
 
             modelBuilder.Entity("StationsScheduler.Data.Product", b =>
                 {
-                    b.HasOne("StationsScheduler.Data.ApplicationUser")
+                    b.HasOne("StationsScheduler.Data.ApplicationUser", "Owner")
                         .WithMany("Products")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("OwnerId");
+
+                    b.HasOne("StationsScheduler.Data.Problem")
+                        .WithMany("Products")
+                        .HasForeignKey("ProblemId");
+                });
+
+            modelBuilder.Entity("StationsScheduler.Data.ProductSchedule", b =>
+                {
+                    b.HasOne("StationsScheduler.Data.ApplicationUser", "Owner")
+                        .WithMany("ProductSchedules")
+                        .HasForeignKey("OwnerId");
+
+                    b.HasOne("StationsScheduler.Data.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID");
+
+                    b.HasOne("StationsScheduler.Data.Station", "Station")
+                        .WithMany()
+                        .HasForeignKey("StationID");
                 });
 
             modelBuilder.Entity("StationsScheduler.Data.Station", b =>
                 {
-                    b.HasOne("StationsScheduler.Data.ApplicationUser")
+                    b.HasOne("StationsScheduler.Data.ApplicationUser", "Owner")
                         .WithMany("Stations")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("OwnerId");
 
-                    b.HasOne("StationsScheduler.Data.Product")
+                    b.HasOne("StationsScheduler.Data.Problem")
                         .WithMany("Stations")
-                        .HasForeignKey("ProductID");
+                        .HasForeignKey("ProblemId");
                 });
 #pragma warning restore 612, 618
         }

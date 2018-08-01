@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,11 +21,16 @@ namespace StationsScheduler.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+			
         }
 
         public DbSet<StationsScheduler.Data.Product> Product { get; set; }
 
         public DbSet<StationsScheduler.Data.Station> Station { get; set; }
+
+        public DbSet<StationsScheduler.Data.ProductSchedule> ProductSchedule { get; set; }
+
+        public DbSet<StationsScheduler.Data.Problem> Problem { get; set; }
 
 
 

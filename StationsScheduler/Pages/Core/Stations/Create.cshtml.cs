@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StationsScheduler.Data;
 
-namespace StationsScheduler.Pages.Account
+namespace StationsScheduler.Pages.Core.Stations
 {
     public class CreateModel : PageModel
     {

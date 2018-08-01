@@ -1,33 +1,50 @@
 ﻿@page
 @model StationsScheduler.Pages.Core.Products.CreateModel
 
+<Style>
+	#gridDiv {
+		display: grid;
+		grid-template-columns: 70% 30%;
+	}
+	.sechdule {
+		display: grid;
+		grid-template-columns: 80% 20%;
+	}
+
+
+</Style>
+<script>
+	function addStation() {
+		var repeats = document.getElementsByClassName('repeat');
+		var parent_node = repeats[0].parentNode.parentElement;
+		parent_node.innerHTML += repeats[0].outerHTML + repeats[1].innerHTML;
+	}
+}
+			
+</script>
 <h4>Product</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Product.Name" class="control-label"></label>
-                <input asp-for="Product.Name" class="form-control" />
-                <span asp-validation-for="Product.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.time" class="control-label"></label>
-                <input asp-for="Product.time" class="form-control" />
-                <span asp-validation-for="Product.time" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+	<div class="col-md-4">
+		<form method="post" >
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Product.Name" class="control-label"></label>
+				<input asp-for="Product.Name" class="form-control" />
+				<span asp-validation-for="Product.Name" class="text-danger"></span>
+				<br />
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn" />
+			</div>
+		</form>
+	</div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+	<a asp-page="../Dashboard">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

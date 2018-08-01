@@ -10,12 +10,15 @@ namespace StationsScheduler.Data
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-		public DbSet<Product> Products {
+		public ICollection<Product> Products {
 			get; set;
 		}
-		public DbSet<Station> Stations {
+		public ICollection<Station> Stations {
 			get; set;
 		}
 
+		public ICollection<ProductSchedule> ProductSchedules {
+			get;set;
+		}
 	}
 }
