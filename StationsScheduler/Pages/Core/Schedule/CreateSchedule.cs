@@ -51,6 +51,10 @@ namespace StationsScheduler.Pages.Core.Schedule
 			set; get;
 		}
 
+		public double StationTime {
+			set;get;
+		}
+
 		public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -58,7 +62,9 @@ namespace StationsScheduler.Pages.Core.Schedule
                 return Page();
             }
 			Schedule.Product = await _context.Product.SingleOrDefaultAsync(m => m.ProductID == productID);
-			Schedule.Station = await _context.Station.SingleOrDefaultAsync(m => m.StationID == stationID);
+			Station myStation = await _context.Station.SingleOrDefaultAsync(m => m.StationID == stationID);
+			StationTimeMix mix = new StationTimeMix(myStation, StationTime);
+			Schedule.StationsTime.Add(mix);
 
 			_context.ProductSchedule.Add(Schedule);
 			await _context.SaveChangesAsync();

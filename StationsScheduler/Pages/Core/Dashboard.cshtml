@@ -117,10 +117,10 @@
 							@Html.DisplayNameFor(model => model.ProductSchedule[0].Product)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.ProductSchedule[0].Station)
+							@Html.DisplayNameFor(model => model.ProductSchedule[0].StationsTime)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.ProductSchedule[0].Time)
+							@Html.DisplayNameFor(model => model.ProductSchedule[0].StationsTime)
 						</th>
 						<th></th>
 					</tr>
@@ -132,10 +132,10 @@
 								@Html.DisplayFor(modelItem => item.Product.Name)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.Station.Name)
+								@Html.DisplayFor(modelItem => item.StationsTime)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.Time)
+								@Html.DisplayFor(modelItem => item.StationsTime)
 							</td>
 							<td>
 								<a asp-page="Schedule/Edit" asp-route-id="@item.ProductScheduleID">Edit</a> |
