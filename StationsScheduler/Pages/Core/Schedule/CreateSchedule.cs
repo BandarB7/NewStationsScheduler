@@ -42,10 +42,14 @@ namespace StationsScheduler.Pages.Core.Schedule
 		}
 
 		[BindProperty]
-		public int selectionID {
+		public int productID {
 			set;get;
 		}
 
+		[BindProperty]
+		public int stationID {
+			set; get;
+		}
 
 		public async Task<IActionResult> OnPostAsync()
         {
@@ -53,18 +57,9 @@ namespace StationsScheduler.Pages.Core.Schedule
             {
                 return Page();
             }
-			
-			foreach (var pr in _context.Product) {
-				if (pr.ProductID == Schedule.Product.ProductID) {
-					Schedule.Product = pr;
-				}
-			}
-			
-			foreach (var st in _context.Station) {
-				if (st.StationID == Schedule.Station.StationID) {
-					Schedule.Station = st;
-				}
-			}
+			Schedule.Product = await _context.Product.SingleOrDefaultAsync(m => m.ProductID == productID);
+			Schedule.Station = await _context.Station.SingleOrDefaultAsync(m => m.StationID == stationID);
+
 			_context.ProductSchedule.Add(Schedule);
 			await _context.SaveChangesAsync();
             return RedirectToPage("../Dashboard");

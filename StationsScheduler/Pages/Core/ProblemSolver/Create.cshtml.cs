@@ -27,9 +27,10 @@ namespace StationsScheduler.Pages.Core.ProblemSolver
 		}
 
 		public async Task<IActionResult> OnGetAsync() {
+			Product product;
 			Schedules = await _context.ProductSchedule.ToListAsync();
 			foreach (var entry in Schedules) {
-				Console.Write("hello");
+				product = entry.Product;
 			}
 			return Page();
 		}
